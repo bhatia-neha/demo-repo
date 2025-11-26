@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample</title>
+    <meta name="description" content="Sample HTML layout" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">Logo</a>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Welcome</h1>
+            <p>Brief intro text.</p>
+            <a href="#features" class="cta">Get started</a>
+        </section>
+
+        <section id="features" aria-labelledby="features-heading">
+            <h2 id="features-heading">Features</h2>
+            <div class="grid">
+                <article>
+                    <h3>Feature 1</h3>
+                    <p>Short description.</p>
+                </article>
+                <article>
+                    <h3>Feature 2</h3>
+                    <p>Short description.</p>
+                </article>
+            </div>
+        </section>
+
+        <aside>
+            <h2>Aside</h2>
+            <p>Related links or info.</p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Company name.</p>
+    </footer>
+
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="main.js" defer></script>
+</body>
+</html>
