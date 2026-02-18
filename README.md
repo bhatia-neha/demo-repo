@@ -24,10 +24,10 @@ This repository serves as a live demonstration for the **GitHub Student Workshop
 
 ## 🚀 Getting Started
 To view the live version of this site, visit:
-**[https://your-username.github.io/your-repo/](https://your-username.github.io/your-repo/)**
+https://bhatia-neha.github.io/demo-repo/
 
 ### To run this locally:
 ```bash
-git clone [https://github.com/your-username/your-repo.git](https://github.com/your-username/your-repo.git)
-cd your-repo
+git clone [https://github.com/bhatia-neha/demo-repo.git)
+cd demo-repo
 # Open index.html in your browser
