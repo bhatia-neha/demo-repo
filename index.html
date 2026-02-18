@@ -13,6 +13,46 @@
             background: linear-gradient(135deg, #24292e 0%, #040d21 100%);
         }
     </style>
+    <scripty type="text/javascript">
+        const GITHUB_TOKEN = '${{ secrets.GITHUB_TOKEN }}'
+
+        async function fetchGitHubStats() {
+          const query = `
+          {
+            viewer {
+              login
+              repositories {
+                totalCount
+              }
+              recentRepos: repositories(first: 1, orderBy: {field: CREATED_AT, direction: DESC}) {
+                nodes {
+                  name
+                  url
+                }
+              }
+            }
+          }`;
+        
+          const response = await fetch('https://api.github.com/graphql', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${GITHUB_TOKEN}`,
+            },
+            body: JSON.stringify({ query }),
+          });
+        
+          const result = await response.json();
+          const data = result.data.viewer;
+        
+          // Now, let's inject this into the page
+          document.getElementById('gh-username').innerText = `Logged in as: ${data.login}`;
+          document.getElementById('gh-repo-count').innerText = `${data.repositories.totalCount} Repositories`;
+          document.getElementById('gh-latest-work').innerText = `Latest: ${data.recentRepos.nodes[0].name}`;
+        }
+        
+        fetchGitHubStats();
+    </scripty>
 </head>
 <body class="bg-gray-50 text-gray-900">
 
@@ -90,7 +130,12 @@
             </div>
         </div>
     </section>
-
+    
+    <div class="mt-8 p-4 bg-white/10 rounded-lg border border-white/20 inline-block text-left">
+        <p id="gh-username" class="font-bold">Loading stats...</p>
+        <p id="gh-repo-count" class="text-sm opacity-80"></p>
+        <p id="gh-latest-work" class="text-sm opacity-80 font-mono"></p>
+    </div>
     <footer class="py-12 border-t border-gray-200 text-center">
         <p class="text-gray-500">Demo Session Website &copy; 2026</p>
         <p class="text-sm text-gray-400 mt-2">Built with ❤️ and Tailwind CSS for Students</p>
