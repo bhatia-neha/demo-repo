@@ -15,7 +15,7 @@
     </style>
     <script type="text/javascript">
         const GITHUB_TOKEN = '${{ secrets.ACTION_TOKEN_SECRET }}'
-
+        console.log(GITHUB_TOKEN);
         async function fetchGitHubStats() {
           const query = `
           {
